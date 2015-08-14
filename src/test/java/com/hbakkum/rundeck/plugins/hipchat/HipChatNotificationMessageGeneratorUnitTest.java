@@ -38,23 +38,6 @@ public class HipChatNotificationMessageGeneratorUnitTest {
     }
 
     @Test
-    public void testDefaultTemplateGetsUsedWhenNoTemplateLocationIsSpecified() {
-        final String expectedMessage = "Execution of job\n" +
-                "<a href=\"http://rundeck/jobs/my_job\">\n" +
-                "job_group/job_name</a>\n" +
-                "    <b>started</b>\n" +
-                "<ul>\n" +
-                "    <li>User: hbakkum</li>\n" +
-                "    <li>ExecId: 1</li>\n" +
-                "</ul>\n" +
-                "<a href=\"http://rundeck/jobs/my_job/output\">View Output</a>";
-
-        final String actualMessage = messageGenerator.generateMessage(null, "hipchat-message.ftl", "start", EXECUTION_DATA, null);
-
-        assertEquals(actualMessage, expectedMessage);
-    }
-
-    @Test
     public void testDefaultTemplateIsOverriddenWhenTemplateLocationIsSpecified() {
         final String expectedMessage = "job_name started";
         final String templateLocation = this.getClass().getResource("/templates/hipchat-message-override-test.ftl").getFile();
